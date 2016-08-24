@@ -12,18 +12,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     master_config.vm.box = "ubuntu/trusty64"
     master_config.vm.host_name = 'salt-master'
     master_config.vm.network "private_network", ip: "192.168.50.10"
-    master_config.vm.synced_folder "saltstack/salt/", "/srv/salt"
-    master_config.vm.synced_folder "saltstack/pillar/", "/srv/pillar"
+    master_config.vm.synced_folder "salt/roots/", "/srv"
 
     master_config.vm.provision :salt do |salt|
-      salt.master_config = "saltstack/etc/master"
-      salt.master_key = "saltstack/keys/master_minion.pem"
-      salt.master_pub = "saltstack/keys/master_minion.pub"
-      salt.minion_key = "saltstack/keys/master_minion.pem"
-      salt.minion_pub = "saltstack/keys/master_minion.pub"
+      salt.master_config = "salt/etc/master"
+      salt.master_key = "salt/keys/master_minion.pem"
+      salt.master_pub = "salt/keys/master_minion.pub"
+      salt.minion_key = "salt/keys/master_minion.pem"
+      salt.minion_pub = "salt/keys/master_minion.pub"
       salt.seed_master = {
-                          "minion1" => "saltstack/keys/minion1.pub",
-                          "minion2" => "saltstack/keys/minion2.pub"
+                          "minion1" => "salt/keys/minion1.pub",
+                          "minion2" => "salt/keys/minion2.pub"
                          }
 
       salt.install_type = "stable"
@@ -37,13 +36,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :minion1 do |minion_config|
     minion_config.vm.box = "ubuntu/trusty64"
-    minion_config.vm.host_name = 'trusty-minion'
+    minion_config.vm.host_name = 'trustyminion'
     minion_config.vm.network "private_network", ip: "192.168.50.11"
 
     minion_config.vm.provision :salt do |salt|
-      salt.minion_config = "saltstack/etc/minion1"
-      salt.minion_key = "saltstack/keys/minion1.pem"
-      salt.minion_pub = "saltstack/keys/minion1.pub"
+      salt.minion_config = "salt/etc/minion1"
+      salt.minion_key = "salt/keys/minion1.pem"
+      salt.minion_pub = "salt/keys/minion1.pub"
       salt.install_type = "stable"
       salt.verbose = true
       salt.colorize = true
@@ -53,13 +52,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :minion2 do |minion_config|
     minion_config.vm.box = "mwrock/windows2012r2"
-    minion_config.vm.host_name = 'win-minion'
+    minion_config.vm.host_name = 'windowsminion'
     minion_config.vm.network "private_network", ip: "192.168.50.12"
 
     minion_config.vm.provision :salt do |salt|
-      salt.minion_config = "saltstack/etc/minion2"
-      salt.minion_key = "saltstack/keys/minion2.pem"
-      salt.minion_pub = "saltstack/keys/minion2.pub"
+      salt.minion_config = "salt/etc/minion2"
+      salt.minion_key = "salt/keys/minion2.pem"
+      salt.minion_pub = "salt/keys/minion2.pub"
       salt.install_type = "stable"
       salt.version = "2016.3.2" # windows only
       salt.verbose = true
