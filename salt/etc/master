@@ -16,6 +16,9 @@ fileserver_backend:
   - git
   - roots
 
+gitfs_remotes:
+  - git://github.com/zsoltf/salt-samba-formula.git
+
 winrepo_dir: ''
 winrepo_dir_ng: '/srv/salt/win/repo-ng'
 
