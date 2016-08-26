@@ -28,7 +28,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :minion2 do |minion_config|
-    minion_config.vm.box = "mwrock/windows2012r2"
+    minion_config.vm.box = "mwrock/Windows2012R2"
     minion_config.vm.host_name = 'minion2'
     minion_config.vm.network "private_network", ip: "192.168.50.12"
 
