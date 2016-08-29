@@ -2,3 +2,4 @@ base:
   '*':
     - default
     - samba
+    - users
