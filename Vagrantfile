@@ -27,6 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+=begin
   config.vm.define :minion2 do |minion_config|
     minion_config.vm.box = "mwrock/Windows2012R2"
     minion_config.vm.host_name = 'minion2'
@@ -43,6 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       salt.bootstrap_options = "-P -c /tmp"
     end
   end
+=end
 
   config.vm.define :minion3 do |minion_config|
     minion_config.vm.box = "bento/freebsd-10.2"
@@ -62,6 +64,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     minion_config.vm.box = "bento/centos-7.1"
     minion_config.vm.host_name = 'minion4'
     minion_config.vm.network "private_network", ip: "192.168.50.14"
+    minion_config.vm.network "forwarded_port", guest: 80, host:8080
     minion_config.ssh.insert_key = false
 
     minion_config.vm.provision :salt do |salt|
