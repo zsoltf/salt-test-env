@@ -13,8 +13,8 @@ already be installed.
 
 .. code-block:: bash
 
-    git clone https://github.com/zsoltf/salt-vagrant-demo.git
-    cd salt-vagrant-demo
+    git clone https://github.com/zsoltf/salt-test-env.git
+    cd salt-test-env
     vagrant up
 
 
