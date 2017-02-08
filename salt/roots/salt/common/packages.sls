@@ -1,5 +1,5 @@
+{% from "common/map.jinja" import common with context %}
+
 common_packages:
   pkg.installed:
-    - pkgs:
-      - curl
-      - git
+    - pkgs: {{ common.pkgs }}

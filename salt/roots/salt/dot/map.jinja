@@ -1,0 +1,5 @@
+{% set dot = salt.grains.filter_by({
+  'Debian': {
+    '.bashrc': 'salt://dot/files/bashrc.jinja'
+  }
+}) %}

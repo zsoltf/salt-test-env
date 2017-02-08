@@ -1,5 +1,5 @@
 include:
-  - ssh
+  - .ssh
 
 {% for username, details in pillar.get('users', {}).items() %}
 {{ username }}:
